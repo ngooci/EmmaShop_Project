@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment View</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <style>
+        .container {
+            width: 100%;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form {
+
+            width: 600px;
+            height: 55px;
+            display: flex;
+            margin-top: 20px;
+        }
+        form i {
+            align-self: center;
+            padding: 10px 20px;
+            color: #777;
+        }
+        form input {
+            flex: 1;
+            border: none;
+            outline: none;
+        }
+        form button {
+            background: #F2C440;
+            padding: 10px 50px;
+            border: none;
+            outline: none;
+            color: #081734;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        table {
+            width: 1100px;
+            margin-top: 20px;
+        }
+        table th {
+            background-color: #081734bc;
+            color: white;
+        }
+
+        table th,
+        table td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        .loaf {
+            margin-top: 100px;
+        }
+
+        .search {
+            position: fixed;
+            top: 23%;
+            left: 30%;
+        }
+
+        .add-new {
+            margin-left: 10px;
+            width: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="customerview.html">CUSTOMER</a></li>
+                        <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                        <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                        <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                        <li>
+                            <a href="">MAINTENANCE</a>
+                            <ul class="dropdown">
+                                <li><a href="city.html">CITY</a></li>
+                                <li><a href="province.html">PROVINCE</a></li>
+                                <li><a href="equipementType.html">TYPE</a></li>
+                                <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+    </section>
+    <div class="container">
+        <div class="search">
+            <form>
+                <input type="text" placeholder="Search for an Equipment..." onkeyup="searchCustomers()">
+                <button type="button">Search</button>
+                <div class="add-new">
+                    <button type="button" class="btns" id="newButton">Add new Equipment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <table class="loaf">
+        <tr>
+            <th><strong>Equipment ID</strong></th>
+            <th><strong>Equipment Name</strong></th>
+            <th><strong>Equipment Type</strong></th>
+            <th><strong>Serial Number</strong></th>
+            <th><strong>Action</strong></th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Lawn King 3000</td>
+            <td>Gas-Powered</td>
+            <td>SN#89632</td>
+            <td>
+                <input type="button" value="Edit" onclick="window.location.href = 'editEquipment.html'">
+                <input type="button" value="View" onclick="window.location.href = 'Viewequipment.html'">
+                <input type="button" value="Request" onclick="window.location.href = 'requestform.html'">    
+
+            </td>
+        <tr>
+            <td>2</td>
+            <td>Lawn Master 5000</td>
+            <td>Gas-Powered</td>
+            <td>SN#78901</td>
+            <td>
+                <input type="button" value="Edit" onclick="window.location.href = 'editEquipment.html'">
+                <input type="button" value="View" onclick="window.location.href = 'Viewequipment.html'">
+                <input type="button" value="Request" onclick="window.location.href = 'requestform.html'">    
+
+            </td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Greenfield Pro 2000</td>
+            <td>Electric</td>
+            <td>SN#34712</td>
+            <td>
+                <input type="button" value="Edit" onclick="window.location.href = 'editEquipment.html'">
+                <input type="button" value="View" onclick="window.location.href = 'Viewequipment.html'">
+                <input type="button" value="Request" onclick="window.location.href = 'requestform.html'">    
+
+            </td>
+        </tr>
+    </table>
+    </div>
+    </div>
+    <script>
+        // JavaScript code (as provided in your original code)
+        // Add this JavaScript code for search functionality
+        function searchEquipment() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("equipmentSearch");
+            filter = input.value.toLowerCase();
+            table = document.querySelector("table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) { // Start from 1 to skip the table header row
+                var equipmentCells = tr[i].getElementsByTagName("td");
+                var shouldDisplay = false;
+                for (var j = 0; j < equipmentCells.length; j++) {
+                    td = equipmentCells[j];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            shouldDisplay = true;
+                            break;
+                        }
+                    }
+                }
+                if (shouldDisplay) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        function redirectToCustomerPage() {
+            window.location.replace("newequipment.html");
+        }
+        document.getElementById("newButton").addEventListener("click", redirectToCustomerPage);
+        function handleNewButtonClick() {
+            window.location.href = "Viewequipment2.html";
+            var newButton = document.getElementById("newButton");
+            newButton.style.backgroundColor = "red";
+        }
+    </script>
+</body>
+
+</html>

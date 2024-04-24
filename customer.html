@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+    <style>
+        header{
+            background-color: #F2C440;
+            color: #081734;
+            font-weight: bold;
+        }
+
+        #question-dialog {
+            position: fixed;
+            top: 10%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        .space{
+            width: 40%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 0px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"], select{
+            width: 250px;
+            color: #081734;
+            font-weight: 500;
+            line-height: 20px;
+        }
+        .second_column{
+            text-align: right;
+        }
+        .first_column{
+            padding: 4px 4px;
+        }
+        .first_column div ,
+        .second_column div{
+            margin-bottom: 7px ;
+        }
+
+        select{
+            width: 253.2px;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="customerview.html">CUSTOMER</a></li>
+                        <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                        <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                        <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                        <li>
+                            <a href="">MAINTENANCE</a>
+                            <ul class="dropdown">
+                                <li><a href="city.html">CITY</a></li>
+                                <li><a href="province.html">PROVINCE</a></li>
+                                <li><a href="equipementType.html">TYPE</a></li>
+                                <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+    </section>
+    <main>
+        <form action="http://webdevbasics.net/scripts/demo.php" method="post">
+            <div class="two-cols">
+                <header>Add New Customer</header>
+                <div class="space">
+                    <div class="first_column">
+                        <div><label for="fName">First Name:</label></div>
+                        <div><label for="mName">Middle Name:</label></div>
+                        <div><label for="lName">Last Name:</label></div>
+                        <div><label for="email">Email:</label></div>
+                        <div><label for="phone">Phone Number:</label></div>
+                        <div><label for="city">City:</label></div>
+                        <div><label for="province">Province:</label></div>
+                    </div>
+                    <div class="second_column">
+                        <div><input id="fName" name="fName" type="text" value="" placeholder="eg. John" required></div>
+                        <div><input id="mName" name="mName" type="text" value="" placeholder="-optional-" title="optional input, you can leave it empty"></div>
+                        <div><input id="lName" name="lName" type="text" value="" placeholder="eg. Nguyen" required></div>
+                        <div><input id="email" name="email" type="email" value="" placeholder="eg. emmasshop@outlook.com" required></div>
+                        <div><input id="phone" name="phone" type="tel" value="" placeholder="eg. 905.454.6545" required></div>
+                        <div><select id="city" name="city" readonly>
+                            <option value="stCatharines">St.Catharines</option>
+                            <option value="burlington">Burlington</option>
+                            <option value="thorold">Thorold</option>
+                            <option value="toronto">Toronto</option>
+                            <option value="welland">Welland</option>
+                        </select></div>
+                        <div><select id="province" name="province" readonly>
+                            <option value="ontario">Ontario</option>
+                            <option value="alberta">Alberta</option>
+                            <option value="britishColumbia">British Columbia</option>
+                            <option value="manitoba">Manitoba</option>
+                            <option value="Quebec">Quebec</option>
+                        </select></div>
+                    </div>
+
+                </div>
+                <input type="button" value="Back" onclick="window.location.href = 'customerview.html';">
+                <input type="button" id="show-dialog" value="Submit">
+                <dialog id="question-dialog">
+                    <p>Do you want to add this person's equipement too ?</p>
+                    <input type="button" id="yes-button" value="yes">
+                    <input type="button" id="no-button" value="no">
+                </dialog>
+            </div>
+    </main>
+    <script>
+        const showDialogButton = document.getElementById('show-dialog');
+        const questionDialog = document.getElementById('question-dialog');
+        const yesButton = document.getElementById('yes-button');
+        const noButton = document.getElementById('no-button');
+
+        showDialogButton.addEventListener('click', () => {
+            questionDialog.showModal();
+        });
+
+        yesButton.addEventListener('click', () => {
+            window.location.href = 'newequipment.html';
+            questionDialog.close();
+        });
+
+        noButton.addEventListener('click', () => {
+
+            questionDialog.close();
+            window.location.href = 'customerview.html';
+
+
+            alert("Customer Added");
+        });
+    </script>
+</body>
+
+</html>

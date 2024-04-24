@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipment View</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+    <style>
+        .two-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 65vh;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 3px;
+            width: 60%;
+            color: #081734;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .custview1 {
+            background-color: #F2C440;
+            border: 1px solid #F2C440;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .custview1 h2 {
+            font-size: 24px;
+        }
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        label {
+            position: relative;
+            font-weight: bold;
+            bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #081734;
+            border-radius: 3px;
+            color: #081734;
+            font-weight: 600;
+        }
+        input[type="button"]:hover{
+            background-color: #0817348c;
+            color: #ffFFFF ;
+            transition: all 0.5s ease;
+        }
+        .buttons{
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="customerview.html">CUSTOMER</a></li>
+                        <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                        <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                        <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                        <li>
+                            <a href="">MAINTENANCE</a>
+                            <ul class="dropdown">
+                                <li><a href="city.html">CITY</a></li>
+                                <li><a href="province.html">PROVINCE</a></li>
+                                <li><a href="equipementType.html">TYPE</a></li>
+                                <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+    </section>
+    <div class="two-col">
+        <div class="custview1">
+            <h2>Equipment Details</h2>
+            <form id="customerForm">
+                <div>
+                    <label for="EquipmentName">Equipment Name:</label>
+                    <input type="text" id="EquipmentName" readonly value="Lawn King 3000">
+                </div>
+                <div>
+                    <label for="EquipmentType">Equipment Type:</label>
+                    <input type="text" id="EquipmentType" readonly value="Gas-Powered">
+                </div>
+                <div>
+                    <label for="SerialNumber">Serial Number:</label>
+                    <input type="text" id="SERIAL NUMBEr" readonly value="SN#89632">
+                </div>
+                <div>
+                    <label for="WarrantyStatus">Warranty Status:</label>
+                    <input type="text" id="WarrantyStatus" value="Expired" readonly>
+                </div>
+                <div>
+                    <label for="Location">Location:</label>
+                    <input type="text" id="Location" value="Barrie" readonly>
+                </div>
+                <div>
+                    <label for="Manufacturer">Manufacturer:</label>
+                    <input type="text" id="Manufacturer" value="Craftsman" readonly>
+                </div>
+                <div class="buttons">
+            </div>
+            </form>
+            <div>
+                <input type="button" value="Back" onclick="window.location.href = 'equipmentview.html';">
+                <input type="button" value="Edit" onclick="window.location.href = 'editEquipment.html'">
+                <input type="button" value="Repair Request" onclick="window.location.href = 'requestform.html'">    
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+    <style>
+            #citieslist {   
+                list-style: none;           
+                display: grid;
+                grid-template-columns:  1fr;    
+            }  
+            #citieslist li {
+                text-align: center;
+            }   
+            li span{
+                color: #081734;
+                padding-right: 10%;
+            }
+            form {
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #F2C440;
+                border: 1px solid #F2C440;
+                box-shadow: 0 0 15px rgba(218, 214, 201, 0.863);
+                text-align: center;
+            }  
+            #citieslist li {
+                margin-bottom: 5px;
+                text-align: right;
+            }  
+            label {
+                display: block;
+                color: #081734;
+                font-weight: bold;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }   
+            input[type="text"] {
+                padding: 5px;
+                margin-bottom: 10px;
+            }   
+            button {
+                background-color: #081734;
+                color: antiquewhite;
+                padding: 5px 10px;
+                cursor: pointer;
+            }
+            .city_List{
+                width: 30%;
+                margin: 0 auto;
+            }
+            .searchArea{
+                width: 240px;
+                margin: 0 auto;
+            }
+        </style>
+    
+</head>
+
+<body>
+    <!-- NAVIGATION BAR -->
+    <section class="header">
+            <!--NAVIGATION BAR-->
+            <section class="header">
+                <nav class="img">
+                    <a href="index.html"><img src="images/Logo.png"></a>
+                    <div class="nav-links" id="navLinks">
+                        <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                        <ul class="scroll">
+                            <li><a href="index.html">LOGOUT</a></li>
+                            <li><a href="customerview.html">CUSTOMER</a></li>
+                            <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                            <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                            <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                            <li>
+                                <a href="">MAINTENANCE</a>
+                                <ul class="dropdown">
+                                    <li><a href="city.html">CITY</a></li>
+                                    <li><a href="province.html">PROVINCE</a></li>
+                                    <li><a href="equipementType.html">TYPE</a></li>
+                                    <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+                    </div>
+                </nav>
+            </section>
+    <!-- LIST OF CITIES -->
+    <main class="two-cols">
+        <form action="http://webdevbasics.net/scripts/demo.php" method="post">
+            <div class="searchArea">
+                <label for="txtSearch">Search:</label>
+                <input type="text" id="txtSearch" placeholder="Enter city name" oninput="searchCities()">
+                <button type="button" id="btnAdd" onclick="addCity()">Add</button>
+            </div>
+            <div class="city_List">
+                <ol id="citieslist">
+                    <label><strong>List of Cities</strong></label><br>
+                    <li><span>Calgary</span>
+                        <button type="button" class="btnEdit" onclick="editCity('Calgary')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeCity(this)">Remove</button>
+                    </li>
+                    <li><span>Kelowna</span>
+                        <button type="button" class="btnEdit" onclick="editCity('Kelowna')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeCity(this)">Remove</button>
+                    </li>
+                    <li><span>Thorold</span>
+                        <button type="button" class="btnEdit" onclick="editCity('Thorold')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeCity(this)">Remove</button>
+                    </li>
+                    <li><span>Toronto</span>
+                        <button type="button" class="btnEdit" onclick="editCity('Toronto')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeCity(this)">Remove</button>
+                    </li>
+                    <li><span>Welland</span>
+                        <button type="button" class="btnEdit" onclick="editCity('Welland')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeCity(this)">Remove</button>
+                    </li>
+                </ol>
+            </div>
+        </form>
+    </main>
+    <script>
+
+          // Function to edit an existing city
+          function editCity(cityName) {
+            var newCityName = prompt("Enter the new name for the city:", cityName);
+            if (newCityName) {
+                var citiesList = document.getElementById("citieslist");
+                var cityItem = Array.from(citiesList.children).find(item => item.textContent.includes(cityName));
+                if (cityItem) {
+                    cityItem.innerHTML = "<span>" + newCityName + "</span> <button type='button' class='btnEdit' onclick='editCity(\"" + newCityName + "\")'>Edit</button>";
+                }
+            }
+        }
+
+        // Function to search cities as you type
+        function searchCities() {
+            var input, filter, ol, li, span, i, txtValue;
+            input = document.getElementById('txtSearch');
+            filter = input.value.toUpperCase();
+            ol = document.getElementById('citieslist');
+            li = ol.getElementsByTagName('li');
+            for (i = 0; i < li.length; i++) {
+                span = li[i].getElementsByTagName('span')[0];
+                txtValue = span.textContent || span.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+        function addCity() {
+    var cityName = prompt("Enter the name of the new city:");
+    if (cityName) {
+        var citiesList = document.getElementById("citieslist");
+        var li = document.createElement("li");
+        
+        // Create a span for the city name
+        var spanCity = document.createElement("span");
+        spanCity.textContent = cityName;
+
+        // Add space after the city name
+        spanCity.style.marginRight = "5px"; // Adjust the spacing as needed
+        
+        // Create the "Edit" button
+        var btnEdit = document.createElement("button");
+        btnEdit.type = "button";
+        btnEdit.className = "btnEdit";
+        btnEdit.textContent = "Edit";
+        btnEdit.onclick = function() { editCity(cityName); };
+        
+        // Create the "Remove" button
+        var btnRemove = document.createElement("button");
+        btnRemove.type = "button";
+        btnRemove.className = "btnRemove";
+        btnRemove.textContent = "Remove";
+        btnRemove.onclick = function() { removeCity(this); };
+
+        // Add some spacing between the buttons
+        btnEdit.style.marginRight = "5px"; // Adjust the spacing as needed
+        
+        // Append the elements to the list item
+        li.appendChild(spanCity);
+        li.appendChild(btnEdit);
+        li.appendChild(btnRemove);
+
+        // Append the list item to the cities list
+        citiesList.appendChild(li);
+    }
+}
+
+// Function to remove a city
+function removeCity(button) {
+    var confirmation = confirm("Are you sure you want to remove this city?");
+    if (confirmation) {
+        var li = button.parentNode;
+        li.parentNode.removeChild(li);
+    }
+}
+
+    </script>
+</body>
+</html>

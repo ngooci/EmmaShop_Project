@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Add New Equipment</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+    <style>
+        header{
+            background-color: #F2C440;
+            color: #081734;
+            font-weight: bold;
+        }
+        .space{
+            width: 40%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 0px;
+        }
+        input[type="text"],     select{
+            width: 250px;
+            color: #081734;
+            font-weight: 500;
+            line-height: 20px;
+        }
+        .second_column{
+            text-align: right;
+        }
+        .first_column{
+            padding: 4px 4px;
+        }
+        .first_column div ,
+        .second_column div{
+            margin-bottom: 7px ;
+        }
+
+        select{
+            width: 253.2px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="customerview.html">CUSTOMER</a></li>
+                        <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                        <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                        <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                        <li>
+                            <a href="">MAINTENANCE</a>
+                            <ul class="dropdown">
+                                <li><a href="city.html">CITY</a></li>
+                                <li><a href="province.html">PROVINCE</a></li>
+                                <li><a href="equipementType.html">TYPE</a></li>
+                                <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+    </section>
+    <main>
+        <form action="http://webdevbasics.net/scripts/demo.php" method="post">
+            <div class="two-cols">
+                <header>Add New Equipment</header>
+                <div class="space">
+                    <div class="first_column">
+                        <div><label for="equipType">Equipment Type:</label></div>
+                        <div><label for="equipSerial">Serial Number:</label></div>
+                        <div><label for="equipWarranty">Warranty Status:</label></div>
+                        <div><label for="equipManufacturer">Manufacturer</label></div>
+                        <div><label for="equipColor">Color:</label></div>
+                        <div><label for="equipLocation">Location</label></div>
+                    </div>
+                    <div class="second_column">
+                        <div><input id="equipType" name="equipType" type="text" value="" placeholder="eg. Gas/ Electric ..." required></div>
+                        <div><input id="mName" name="mName" type="text" value="" placeholder="eg. Toshiba 2009" required></div>
+                        <div><input id="equipWarranty" name="equipWarranty" type="text" value="" placeholder="'Number of the years'" title="Number of active years" required></div>
+                        <div><input id="equipManufacturer" name="equipManufacturer" type="text" value="" placeholder="eg. Japan"title="Name of Nation" required ></div>
+                        <div><input id="equipColor" name="equipColor" type="text" value="" placeholder="eg. Blue" required></div>
+                        <div>
+                            <select id="equipLocation" name="equipLocation" readonly>
+                                <option value="ontario">Ontario</option>
+                                <option value="alberta">Alberta</option>
+                                <option value="britishColumbia">British Columbia</option>
+                                <option value="manitoba">Manitoba</option>
+                                <option value="Quebec">Quebec</option>
+                            </select>
+                        </div> 
+                    </div>
+                </div>
+                <input type="button" value="Back" onclick="window.location.href = 'equipmentview.html';">
+                <input type="button" value="Submit" onclick="window.location.href = 'customerview.html';">
+            </div>
+        </form>
+    </main>
+    <div>
+    </div>
+</body>
+
+</html>

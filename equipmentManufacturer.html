@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manufacturer</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css"
+        class="rel">
+    <style>
+        #manufacturerslist {
+            list-style: none;           
+                display: grid;
+                grid-template-columns:  1fr;    
+        }
+        #manufacturerslist li {
+            text-align: center;
+        }
+        li span{
+                color: #081734;
+                padding-right: 10%;
+            }
+        form {
+            max-width: 800px;
+                margin: 0 auto;
+                padding: 20px;
+                background-color: #F2C440;
+                border: 1px solid #F2C440;
+                box-shadow: 0 0 15px rgba(218, 214, 201, 0.863);
+                text-align: center;
+        }
+
+        #manufacturerslist li {
+            margin-bottom: 5px;
+            text-align: right;
+        }
+        label {
+            display: block;
+                color: #081734;
+                font-weight: bold;
+                margin-top: 10px;
+                margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+                padding: 5px;
+                margin-bottom: 10px;
+            }   
+
+        button {
+            background-color: #081734;
+                color: antiquewhite;
+                padding: 5px 10px;
+                cursor: pointer;
+        }
+        .manu_List{
+                width: 40%;
+                margin: 0 auto;
+            }
+        .searchArea{
+                width: 320px;
+                margin: 0 auto;
+            }
+    </style>
+
+</head>
+
+<body>
+    <!--NAVIGATION BAR-->
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <ul class="scroll">
+                    <li><a href="index.html">LOGOUT</a></li>
+                    <li><a href="customerview.html">CUSTOMER</a></li>
+                    <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                    <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                    <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                    <li>
+                        <a href="">MAINTENANCE</a>
+                        <ul class="dropdown">
+                            <li><a href="city.html">CITY</a></li>
+                            <li><a href="province.html">PROVINCE</a></li>
+                            <li><a href="equipementType.html">TYPE</a></li>
+                            <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+    </section>
+
+    <!-- LIST OF Manufacturers -->
+    <main class="two-cols">
+        <form action="http://webdevbasics.net/scripts/demo.php" method="post">
+            <div class="searchArea">
+                <label for="txtSearch">Search:</label>
+                <input type="text" id="txtSearch" placeholder="Enter manufacturer " oninput="searchManufacturer()">
+                <button type="button" id="btnAdd" onclick="addManufacturer()">Add</button>
+            </div>
+            <div class="manu_List">
+                <ol id="manufacturerslist">               
+                    <label><strong>List of Manufacturers</strong></label><br>
+                    <li><span>Craftsman</span>
+                        <button type="button" class="btnEdit" onclick="editManufacturer('Craftsman')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeManufacturer(this)">Remove</button>
+                    </li>
+                    <li><span>Honda</span>
+                        <button type="button" class="btnEdit" onclick="editManufacturer('Honda')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeManufacturer(this)">Remove</button>
+                    </li>
+                    <li><span>Toronto</span>
+                        <button type="button" class="btnEdit" onclick="editManufacturer('Toronto')">Edit</button>
+                        <button type="button" class="btnRemove" onclick="removeManufacturer(this)">Remove</button>
+                    </li>
+                </ol>
+            </div>
+        </form>
+    </main>
+    <script>
+
+        // Function to edit an existing manufacturer
+        function editManufacturer(manufacturerName) {
+            var newManufacturerName = prompt("Enter the new name for the manufacturer:", manufacturerName);
+            if (newManufacturerName) {
+                var manufacturersList = document.getElementById("manufacturerslist");
+                var manufacturerItem = Array.from(manufacturersList.children).find(item => item.textContent.includes(manufacturerName));
+                if (manufacturerItem) {
+                    manufacturerItem.innerHTML = "<span>" + newManufacturerName + "</span> <button type='button' class='btnEdit' onclick='editManufacturer(\"" + newManufacturerName + "\")'>Edit</button> <button type='button' class='btnRemove' onclick='removeManufacturer(this)'>Remove</button>";
+                }
+            }
+        }
+
+        // Function to search manufacturers as you type
+        function searchManufacturer() {
+            var input, filter, ol, li, span, i, txtValue;
+            input = document.getElementById('txtSearch');
+            filter = input.value.toUpperCase();
+            ol = document.getElementById('manufacturerslist');
+            li = ol.getElementsByTagName('li');
+            for (i = 0; i < li.length; i++) {
+                span = li[i].getElementsByTagName('span')[0];
+                txtValue = span.textContent || span.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+                }
+            }
+        }
+
+        function addManufacturer() {
+            var manufacturerName = prompt("Enter the name of the new manufacturer:");
+            if (manufacturerName) {
+                var manufacturersList = document.getElementById("manufacturerslist");
+                var li = document.createElement("li");
+
+                // Create a span for the manufacturer name
+                var spanManufacturer = document.createElement("span");
+                spanManufacturer.textContent = manufacturerName;
+
+                // Add space after the manufacturer name
+                spanManufacturer.style.marginRight = "5px"; // Adjust the spacing as needed
+
+                // Create the "Edit" button
+                var btnEdit = document.createElement("button");
+                btnEdit.type = "button";
+                btnEdit.className = "btnEdit";
+                btnEdit.textContent = "Edit";
+                btnEdit.onclick = function () { editManufacturer(manufacturerName); };
+
+                // Create the "Remove" button
+                var btnRemove = document.createElement("button");
+                btnRemove.type = "button";
+                btnRemove.className = "btnRemove";
+                btnRemove.textContent = "Remove";
+                btnRemove.onclick = function () { removeManufacturer(this); };
+
+                // Add some spacing between the buttons
+                btnEdit.style.marginRight = "5px"; // Adjust the spacing as needed
+
+                // Append the elements to the list item
+                li.appendChild(spanManufacturer);
+                li.appendChild(btnEdit);
+                li.appendChild(btnRemove);
+
+                // Append the list item to the manufacturers list
+                manufacturersList.appendChild(li);
+            }
+        }
+
+        // Function to remove a manufacturer
+        function removeManufacturer(button) {
+            var confirmation = confirm("Are you sure you want to remove this manufacturer?");
+            if (confirmation) {
+                var li = button.parentNode;
+                li.parentNode.removeChild(li);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

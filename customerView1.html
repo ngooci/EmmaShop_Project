@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+    <title>Customer View</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .two-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 65vh;
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 3px;
+            width: 60%;
+            color: #081734;
+            position: absolute;
+            top: 55%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .custview1 {
+            background-color: #F2C440;
+            border: 1px solid #F2C440;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+
+        }
+        .custview1 h2 {
+            font-size: 24px;
+        }
+
+        form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+            margin-right: 20px;
+        }
+
+        label {
+            position: relative;
+            font-weight: bold;
+            bottom: 5px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #081734;
+            border-radius: 3px;
+            color: #081734;
+            font-weight: 600;
+        }
+        input[type="button"]:hover{
+            background-color: #0817348c;
+            color: #ffffff ;
+            transition: all 0.3s ease;
+        }
+        ol {
+            list-style: none;
+            text-align: right;
+        }
+        ol li{
+            padding-bottom: 10px;
+        }
+        ol li button {
+            background-color: #081734;
+            padding: 5px 10px;
+            border: none;
+        }
+        ol li button:hover{
+            background-color: #08173488;
+            transition: all 0.5s ease;
+  
+        }
+        ol li button a {
+            color: #F2C440;
+            text-decoration: none;
+        }
+        .eqOwn{
+            width: 350px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Navbars">
+        <section class="header">
+            <nav class="img">
+                <a href="index.html"><img src="images/Logo.png"></a>
+                <div class="nav-links" id="navLinks">
+                    <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                    <div class="position">
+                        <ul class="scroll">
+                            <li><a href="index.html">LOGOUT</a></li>
+                            <li><a href="customerview.html">CUSTOMER</a></li>
+                            <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                            <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                            <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                            <li>
+                                <a href="">MAINTENANCE</a>
+                                <ul class="dropdown">
+                                    <li><a href="city.html">CITY</a></li>
+                                    <li><a href="province.html">PROVINCE</a></li>
+                                    <li><a href="equipementType.html">TYPE</a></li>
+                                    <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+                </div>
+            </nav>
+        </section>
+    </div>
+
+    <div class="two-col">
+        <div class="custview1">
+            <h2>Customer Details</h2>
+            <form id="customerForm">
+                <div>
+                    <label for="viewFirstName">First Name:</label>
+                    <input type="text" id="viewFirstName" readonly value="John">
+                </div>
+                <div>
+                    <label for="viewMiddleName">Middle Name:</label>
+                    <input type="text" id="viewMiddleName" readonly value="M.">
+                </div>
+                <div>
+                    <label for="viewLastName">Last Name:</label>
+                    <input type="text" id="viewLastName" readonly value="Doe">
+                </div>
+                <div>
+                    <label for="viewCity">City:</label>
+                    <input type="text" id="viewCity" value="New York" readonly>
+                </div>
+                <div>
+                    <label for="viewProvince">Province:</label>
+                    <input type="text" id="viewProvince" value="New York" readonly>
+                </div>
+                <div>
+                    <label for="viewPhoneNumber">Phone Number:</label>
+                    <input type="text" id="viewPhoneNumber" value="(123) 456-7890" readonly>
+                </div>
+                <div>
+                    <label for="viewEmail">Email:</label>
+                    <input type="text" id="viewEmail" value="john.doe@example.com" readonly>
+                </div>
+                <div>
+                    <label for="equipmentOwn">Equipment Own:</label>
+                    <div class="eqOwn">
+                    <ol >
+                        <li> Lawn King 3000 <button><a href="Viewequipment.html">View</a></button></li>
+                        <li> Lawn Master 5000 <button><a href="Viewequipment.html">View</a></button></li>
+                        <li> Lawn King 7000 <button><a href="Viewequipment.html">View</a></button></li>
+                    </ol>
+                    </div>
+                </div>
+            </form>
+            <input type="button" value="Back" onclick="window.location.href = 'customerview.html';">
+            <input type="button" value="Edit" onclick="window.location.href = 'editCustomer.html';">
+        </div>
+    </div>
+    </body>
+
+</html>

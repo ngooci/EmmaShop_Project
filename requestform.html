@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Request Form</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+    <style>
+        table {
+            width: 65%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid #081734;
+        }
+        th, td {           
+            font-weight: bold;
+        }
+        td{
+            color: #081734;
+        }
+        .two-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+        }
+        input[type="text"],input[type="date"]{
+            width: 300px;
+        }
+        textarea{
+            width: 500px;
+        }
+        tbody td{
+            padding-left: 25px;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="customerview.html">CUSTOMER</a></li>
+                        <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                        <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                        <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                        <li>
+                            <a href="">MAINTENANCE</a>
+                            <ul class="dropdown">
+                                <li><a href="city.html">CITY</a></li>
+                                <li><a href="province.html">PROVINCE</a></li>
+                                <li><a href="equipementType.html">TYPE</a></li>
+                                <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+    </section>
+    <main>
+            <table>
+                <tr>
+                    <th colspan="2" style="text-align: center;">Request Form</th>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="equipType">Equipment Name:</label>
+                    </td>
+                    <td>
+                        <input id="equipType" name="equipType" type="text" title="'Name + Year'" value="eg.Lawn King 3000">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="mName">Owner Name:</label>
+                    </td>
+                    <td>
+                        <input id="mName" name="mName" type="text" value="eg.John Doe" title="Full Name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="reqDate">Request Date:</label>
+                    </td>
+                    <td>
+                        <input id="reqDate" name="reqDate" type="date" title="Date">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="comment">Brief Description of Problem:</label>
+                    </td>
+                    <td>
+                        <textarea id="comment" name="comment" title="using arrow in the corner for wider space"></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label>Warranty Status:</label>
+                    </td>
+                    <td>
+                        <input id="computerTurnOnyes" name="computerTurnOn" type="radio" value="yes">
+                        <label for="computerTurnOnyes">Active</label>
+                        <input id="computerTurnOnNo" name="computerTurnOn" type="radio" value="no">
+                        <label for="computerTurnOnNo">Expired</label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="button" value="Back" onclick="window.location.href = 'Viewequipment.html'">
+                        <input type="button" value="Next" onclick="window.location.href = 'repairTable.html'">  
+                    </td>
+                </tr>
+            </table>
+        </main>
+        <script>
+            var date = new Date().toISOString().substring(0, 10),
+                field = document.querySelector('reqDate');
+                field.value = date;
+        </script>
+
+</body>
+
+
+</html>

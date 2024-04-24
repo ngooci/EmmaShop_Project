@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOG-IN</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+    <style>
+        #username, #password{
+            width: 200px;
+            padding: 10px;
+            margin-bottom: 10px;
+            color: #081734;
+            border-radius: 7px;
+        }
+        .header {
+    height: 100vh;
+    width: 100%;
+    background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)), url(images/Lawnmower.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+        button{
+            display: block;
+            margin: 0 auto;
+            width: 7%;
+            padding: 10px;
+            background-color: #F2C440;
+            font-weight: bold;
+            color: #091a3d;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            text-align: center;
+        }
+        button:hover{
+            background-color: #e7c76e;
+            transition: all 0.5s ease;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOG-IN</a></li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+        <div class="text-box">
+            <div class="sign-in">
+                <h1>Log-in</h1>
+            </div>
+            <div>
+                <form id="loginForm">
+                    <input type="text" id="username" placeholder="Username" required><br>
+                    <input type="password" id="password" placeholder="Password" required><br>
+                    <button type="submit" id="loginBtn">Login</button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+    <script>
+        const users = [
+            { username: 'admin', password: 'admin1', role: 'admin' },
+            { username: 'sales', password: 'sales1', role: 'sales' },
+            { username: 'technician', password: 'technician1', role: 'technician' }
+        ];
+
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            const user = users.find(u => u.username === username && u.password === password);
+
+            if (user) {
+                if (user.role === 'admin') 
+                {
+                    // Redirect to admin page
+                    window.location.href = 'customerview.html';
+                } else if (user.role === 'sales') 
+                {
+                    // Redirect to customerview page
+                    window.location.href = 'customerviewFake.html';
+                }
+                else if (user.role === 'technician') 
+                {
+                    // Redirect to technician page
+                    window.location.href = 'repairTableFake.html';
+                }
+            } else 
+            {
+                alert('Invalid username or password');
+            }
+        });
+    </script>
+</body>
+
+</html>

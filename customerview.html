@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer List</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css">
+    <style>
+        body {
+            background-color: #081734;
+        }
+        .container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        form {
+            width: 600px;
+            height: 55px;
+            display: flex;
+            margin-top: 20px;
+        }
+        form i {
+            align-self: center;
+            padding: 10px 20px;
+            color: #777;
+        }
+        form input {
+            flex: 1;
+            border: none;
+            outline: none;
+        }
+        form button {
+            background: #F2C440;
+            padding: 10px 50px;
+            border: none;
+            outline: none;
+            color: #081734;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        tbody,table {
+            width: 1100px;
+            margin-top: 20px;
+        }
+        table th {
+            background-color: #081734bc;
+            color: white;
+        }
+        #newButton, button{
+            cursor: pointer;
+            border-radius: 4px;
+            border-color: #F2C440;
+        }
+        .loaf {
+            margin-top: 100px;
+        }
+        .search {
+            position: fixed;
+            top: 23%;
+            left: 30%;
+        }
+        .add-new {
+            margin-left: 10px;
+            width: 40px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <section class="headers">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="customerview.html">CUSTOMER</a></li>
+                        <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                        <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                        <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                        <li>
+                            <a href="">MAINTENANCE</a>
+                            <ul class="dropdown">
+                                <li><a href="city.html">CITY</a></li>
+                                <li><a href="province.html">PROVINCE</a></li>
+                                <li><a href="equipementType.html">TYPE</a></li>
+                                <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+    </section>
+    <div class="container">
+        <div class="search">
+            <form>
+                <input type="text" placeholder="Search for a customer..." onkeyup="searchCustomers()">
+                <button type="button">Search</button>
+                <div class="add-new">
+                    <button type="button" class="btns" id="newButton">Add new Customer</button>
+                </div>
+            </form>
+        </div>
+        <table class="loaf">
+            <tr>
+                <th><strong>Customer ID</strong></th>
+                <th><strong>First Name</strong></th>
+                <th><strong>Last Name</strong></th>
+                <th><strong>Email</strong></th>
+                <th><strong>Action</strong></th>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>John</td>
+                <td>Doe</td>
+                <td>john.doe@example.com</td>
+                <td>
+                    <input type="button" value="Edit" onclick="window.location.href = 'editCustomer.html'">
+                    <input type="button" value="View" onclick="window.location.href = 'customerView1.html'">
+
+                </td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Jane</td>
+                <td>Smith</td>
+                <td>jane.smith@example.com</td>
+                <td>
+                    <input type="button" value="Edit" onclick="window.location.href = 'editCustomer.html'">
+                    <input type="button" value="View" onclick="window.location.href = 'customerView1.html'">
+                </td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Michael</td>
+                <td>Johnson</td>
+                <td>michael.j@example.com</td>
+                <td>
+                    <input type="button" value="Edit" onclick="window.location.href = 'editCustomer.html'">
+                    <input type="button" value="View" onclick="window.location.href = 'customerView1.html'">
+                </td>
+            </tr>
+        </table>
+    </div>
+    <input type="hidden" id="selectedCustomerIndex" value>
+    <script>
+        // JavaScript code for search functionality
+        function searchCustomers() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.querySelector("input[type='text']");
+            filter = input.value.toUpperCase();
+            table = document.querySelector("table");
+            tr = table.getElementsByTagName("tr");
+
+            for (i = 1; i < tr.length; i++) { // Start from 1 to skip the table header row
+                var matchFound = false;
+                // Check for the search term in all relevant columns (first name, last name, email, and ID)
+                for (var j = 1; j <= 4; j++) {
+                    td = tr[i].getElementsByTagName("td")[j];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            matchFound = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (matchFound) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        function redirectToCustomerPage() {
+            window.location.replace("customer.html");
+        }
+        document.getElementById("newButton").addEventListener("click", redirectToCustomerPage);
+        function handleNewButtonClick() {
+            // Redirect to the "customer.html" page
+            window.location.href = "customerView1.html";
+
+            // Change the color of the "New" button to green
+            var newButton = document.getElementById("newButton");
+            newButton.style.backgroundColor = "red";
+        }
+    </script>
+</body>
+
+</html>

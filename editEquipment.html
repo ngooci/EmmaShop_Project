@@ -1,0 +1,146 @@
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Equipment</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.1/css/fontawesome.min.css" class="rel">
+<style>
+        header{
+            background-color: #F2C440;
+            color: #081734;
+            font-weight: bold;
+        }
+        .two-cols{
+            margin-top: 55px;
+        }
+        .space{
+            width: 40%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-gap: 0px;
+        }
+        .second_column{
+            text-align: right;
+        }
+        .first_column{
+            padding: 4px 4px;
+        }
+        .first_column div ,
+        .second_column div{
+            margin-bottom: 7px ;
+        }
+        input[type="text"], select{
+            width: 250px;
+            font-weight: 600;
+            line-height: 20px;
+        }
+        select{
+            width: 253.2px;
+        }
+</style>
+</head>
+
+<body>
+    <section class="header">
+        <nav class="img">
+            <a href="index.html"><img src="images/Logo.png"></a>
+            <div class="nav-links" id="navLinks">
+                <i class="fa-regular fa-rectangle-xmark" onclick="hideMenu()"></i>
+                <div class="position">
+                    <ul class="scroll">
+                        <li><a href="index.html">LOGOUT</a></li>
+                        <li><a href="customerview.html">CUSTOMER</a></li>
+                        <li><a href="equipmentview.html">EQUIPMENT</a></li>
+                        <li><a href="repairTable.html">ONGOING REPAIRS</a></li>
+                        <li><a href="CompletedRepairs.html">COMPLETED REPAIRS</a></li>
+                        <li>
+                            <a href="">MAINTENANCE</a>
+                            <ul class="dropdown">
+                                <li><a href="city.html">CITY</a></li>
+                                <li><a href="province.html">PROVINCE</a></li>
+                                <li><a href="equipementType.html">TYPE</a></li>
+                                <li><a href="equipmentManufacturer.html">MANUFACTURER</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <i class="fa-regular fa-square-caret-down" onclick="showMenu()"></i>
+            </div>
+        </nav>
+        
+    </section>   
+    <div class="two-cols">
+        <header style="display: block; margin-top: -9%;">Edit Equipment</header>
+        <div class="space">
+        <div class="first_column">
+            <div><label for="equipName">Equipment Name:</label></div>
+            <div><label for="equipNum">Serial Number:</label></div>
+            <div><label for="equipWarranty">Warranty Status:</label></div>
+            <div><label for="equipLocation">Location:</label></div>
+            <div><label for="equipManufacturer">Manufacturer:</label></div>
+        </div>
+        <div class="second_column">
+            <div><input type="text" id="equipType" name="equipType" placeholder="Lawn King 3000"></div>
+            <div><input type="text" id="equipNum" name="equipNum" placeholder="SN#89632"></div>
+            <div><input type="text" id="equipWarranty" name="equipWarranty" placeholder="Expired"></div>
+            <div><input type="text" id="equipLocation" name="equipLocation" placeholder="Barrie"></div>
+            <div>
+                <select id="Manufacturer" name="Manufacturer" readonly>
+                    <option value="AndreasStihl">Andreas Stihl</option>
+                    <option value="BriggsStratton">British Columbia</option>
+                    <option value="EcoFlow">EcoFlow</option>
+                    <option value="DeereCompany">Deere & Company</option>
+                    <option value="Hitachi">Hitachi</option>
+                </select>
+            </div>
+        </div>
+         </div>
+        <input type="button" value="Back" onclick="window.location.href = 'equipmentview.html';">
+        <input type="button" value="Edit" onclick="saveChanges();">
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Retrieve the equipment data from the query parameter
+            const urlParams = new URLSearchParams(window.location.search);
+            const data = urlParams.get("data");
+
+            if (data) {
+                const equipment = JSON.parse(decodeURIComponent(data));
+                // Populate the input fields with the selected equipment data
+                document.getElementById("equipType").value = equipment.type;
+                document.getElementById("equipNum").value = equipment.serialNumber;
+                document.getElementById("equipWarranty").value = equipment.warrantyStatus;
+                document.getElementById("equipLocation").value = equipment.location;
+                // Manufacturer dropdown is readonly, so it doesn't need to be changed here
+            }
+        });
+
+        function saveChanges() {
+            // Implement the functionality to save changes here
+            // You can retrieve the edited data from the input fields and save it to your data source
+            // After saving, you can navigate back to the equipment view page
+            alert("Record has been edited");
+        }
+
+        function showMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.style.right = "0";
+        }
+
+        function hideMenu() {
+            const navLinks = document.getElementById("navLinks");
+            navLinks.style.right = "-200px";
+        }
+    </script>
+</body>
+
+</html>
